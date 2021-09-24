@@ -17,7 +17,11 @@ releaseCrossBuild := true
 lazy val root = (project in file("."))
   .settings(
     name := "ScalaImageTiler",
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= Seq(
+      scalaTest % Test,
+      "uk.co.danielrendall" %% "scalamathlib" % "0.1.1",
+      "org.apache.xmlgraphics" % "batik-anim" % "1.14"
+    )
   )
 
 // See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.

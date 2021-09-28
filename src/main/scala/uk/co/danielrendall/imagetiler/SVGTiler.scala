@@ -16,7 +16,7 @@ private class SVGTiler(scale: Double,
                        input: BufferedImage,
                        pixelIteratorFactory: PixelIteratorFactory,
                        pixelFilter: PixelFilter,
-                       svgTile: SVGTile) {
+                       svgTile: TileFactory) {
 
   lazy private val domImpl: SVGDOMImplementation =
     SVGDOMImplementation.getDOMImplementation.asInstanceOf[SVGDOMImplementation]
@@ -89,7 +89,7 @@ object SVGTiler {
   def apply(input: BufferedImage,
             pixelIteratorFactory: PixelIteratorFactory,
             pixelFilter: PixelFilter,
-            svgTile: SVGTile): SVGDocument = {
+            svgTile: TileFactory): SVGDocument = {
     new SVGTiler(DEFAULT_SCALE, input, pixelIteratorFactory, pixelFilter, svgTile).go()
 
   }

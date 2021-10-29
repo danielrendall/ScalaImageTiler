@@ -4,6 +4,6 @@ import uk.co.danielrendall.imagetiler.model.TileContext
 
 trait TileFactory {
 
-  def getTile(context: TileContext): Option[DrawOperation]
+  def getTile(implicit context: TileContext): Option[DrawOperation]
 
 }

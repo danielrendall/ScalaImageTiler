@@ -19,7 +19,7 @@ lazy val root = (project in file("."))
     name := "ScalaImageTiler",
     libraryDependencies ++= Seq(
       scalaTest % Test,
-      "uk.co.danielrendall" %% "scalamathlib" % "0.1.1",
+      "uk.co.danielrendall" %% "scalamathlib" % "0.1.2",
       "org.apache.xmlgraphics" % "batik-anim" % "1.14"
     )
   )

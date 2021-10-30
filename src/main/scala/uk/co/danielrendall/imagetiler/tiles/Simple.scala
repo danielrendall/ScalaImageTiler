@@ -23,7 +23,8 @@ case class Simple(inset: Double,
     )
 
     Option { group =>
-      group.appendShape(Polygon(4, context.center, SideLength(context.edge), VerticalSideCrossesPositiveXAxis), customiser)
+      group.appendShape(Polygon(4, context.center, SideLength(context.edge * (1.0 - 2 * inset)),
+        VerticalSideCrossesPositiveXAxis), customiser)
     }
   }
 }

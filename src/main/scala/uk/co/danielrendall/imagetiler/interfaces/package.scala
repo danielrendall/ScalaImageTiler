@@ -7,5 +7,7 @@ package object interfaces {
 
   type DrawOperation = Element => Unit
 
+  type Customiser = Element => Element
+
   type PixelIterator = Iterator[Pixel]
 }

@@ -1,13 +1,19 @@
 package uk.co.danielrendall.imagetiler
 
 import org.apache.batik.anim.dom.SVGDOMImplementation
+import org.apache.batik.transcoder.svg2svg.SVGTranscoder
+import org.apache.batik.transcoder.{TranscoderInput, TranscoderOutput}
 import org.w3c.dom.svg.SVGDocument
 import org.w3c.dom.{Document, Element}
 import uk.co.danielrendall.imagetiler.interfaces._
 import uk.co.danielrendall.imagetiler.model.TileContext
+import uk.co.danielrendall.imagetiler.pixeliterators.Circle
+import uk.co.danielrendall.imagetiler.tiles.Simple
 
 import java.awt.Color
 import java.awt.image.BufferedImage
+import java.io.{File, FileWriter}
+import javax.imageio.ImageIO
 
 /**
  * Use once...
@@ -91,6 +97,23 @@ object SVGTiler {
             pixelFilter: PixelFilter,
             svgTile: TileFactory): SVGDocument = {
     new SVGTiler(DEFAULT_SCALE, input, pixelIteratorFactory, pixelFilter, svgTile).go()
+
+  }
+
+  def main(args: Array[String]): Unit = {
+    val image="/home/daniel/Scratch/imagetiler/disco_volante32.bmp"
+    val output=image + ".svg"
+    val bi = ImageIO.read(new File(image))
+    val doc = apply(bi, Circle(false), PixelFilter.yesToAll, Simple())
+
+
+    val t = new SVGTranscoder
+    val transInput = new TranscoderInput(doc)
+    val writer = new FileWriter(new File(output))
+    val transOutput = new TranscoderOutput(writer)
+    t.transcode(transInput, transOutput)
+    writer.flush()
+    writer.close()
 
   }
 
